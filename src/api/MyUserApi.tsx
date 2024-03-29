@@ -10,6 +10,7 @@ export const useGetMyUser = () => {
 
   const getMyUserRequest = async (): Promise<User> => {
     const accessToken = await getAccessTokenSilently();
+    console.log('accessToken ->', accessToken);
 
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       method: 'GET',
@@ -47,7 +48,7 @@ type CreateUserRequest = {
 export const useCreateMyUser = () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const createMuUserRequest = async (user: CreateUserRequest) => {
+  const createMyUserRequest = async (user: CreateUserRequest) => {
     const accessToken = await getAccessTokenSilently();
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       method: 'POST',
@@ -66,7 +67,7 @@ export const useCreateMyUser = () => {
     isLoading,
     isError,
     isSuccess,
-  } = useMutation(createMuUserRequest);
+  } = useMutation(createMyUserRequest);
 
   return {
     createUser,
